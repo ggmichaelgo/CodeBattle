@@ -1,0 +1,25 @@
+<% content_for :head do %>
+<%= javascript_include_tag 'solve/submit_code' %>	
+<% end %>
+
+<h2> solve </h2>
+
+<%= form_for @code, :url => {:controller => 'solve', :action => 'submit'}, :remote => true do |f| -%>
+
+
+
+<% (0...CompilerFactory.langs.length).each do |i| %>
+	<label><%= CompilerFactory.langs[i] %></label>    
+	<%= f.radio_button :lang, i %>
+	<% end %>
+	<br>
+	<%= f.text_area :code %>
+	<br>
+	<%= f.submit "Submit"%>
+<% end -%>
+
+<textarea id='output'>
+
+</textarea>
+
+

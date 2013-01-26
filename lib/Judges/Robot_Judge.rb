@@ -1,0 +1,3 @@
+class RobotJudge < Judge
+
+end

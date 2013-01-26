@@ -1,0 +1,22 @@
+
+== Welcome to CodeBattle
+CodeBattle is a web application that I use to train my high school programming team.
+
+== History of CodeBattle
+I actually have been working on CodeBattle since grade 10(2010)
+
+There are several versions of CodeBattle:
+- 2010 C# windows application (socket, school competition hosting purpose)
+- 2011 Sinatra (my first web application)
+- 2012 Java Web Socket Server (CS 120 project)
+- 2012 JSP Tomcat (I wanted to use Java's multi-threading)
+- 2012 C# asp.Net MVC 4 (because I learned Software Design patterns with .Net)
+- 2013 Rails (I prefer to develop in Mac)
+
+== About the Developer
+Grade 12 high school student who is from S.Korea and lives in Canada.
+
+I love to develop cool stuff, and play with Jenga blocks! http://youtu.be/cIUhZpKwoV0
+
+== Copyright
+Copyright (c) 2013 by Michael Go.  All Rights Reserved.

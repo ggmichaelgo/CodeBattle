@@ -10,27 +10,48 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130126162615) do
+ActiveRecord::Schema.define(:version => 20130128223701) do
 
   create_table "codes", :force => true do |t|
     t.string   "code"
     t.string   "lang"
+    t.string   "question"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "foos", :force => true do |t|
-    t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  create_table "questions", :force => true do |t|
+  create_table "io_questions", :id => false, :force => true do |t|
+    t.integer  "id",         :default => 0, :null => false
     t.string   "name"
-    t.string   "content"
-    t.string   "type"
+    t.text     "content"
+    t.integer  "point"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.text     "inputs"
+    t.text     "outputs"
+  end
+
+  create_table "question_properties", :force => true do |t|
+    t.string   "name"
+    t.text     "content"
+    t.integer  "point"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "robot_questions", :id => false, :force => true do |t|
+    t.integer  "id",         :default => 0, :null => false
+    t.string   "name"
+    t.text     "content"
+    t.integer  "point"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.text     "robot_path"
   end
 
 end

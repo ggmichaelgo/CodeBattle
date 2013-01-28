@@ -1,7 +1,5 @@
 CodeBattle::Application.routes.draw do  
-  resources :foos
-
-  resources :codes
+  resources :codes, :questions, :ioquestions
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

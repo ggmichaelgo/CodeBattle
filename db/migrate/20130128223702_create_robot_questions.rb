@@ -6,7 +6,7 @@ class CreateRobotQuestions < ActiveRecord::Migration
 			CREATE TABLE robot_questions  as select * from question_properties
 		SQL
 
-		add_column :robot_questions, :robot_path, :text	
+		add_column :robot_questions, :robot_path, :string
 	end
 
 	def down

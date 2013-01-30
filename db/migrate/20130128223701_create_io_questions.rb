@@ -1,6 +1,6 @@
 
 class CreateIoQuestions < ActiveRecord::Migration
-	def up
+	def change		
 		#inherit properties from Questions
 		execute <<-SQL
 			CREATE TABLE io_questions  as select * from question_properties

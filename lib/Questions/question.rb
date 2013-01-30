@@ -1,5 +1,4 @@
-
-module Question		
+module Question	
 	@classes = []
 
 	def self.all
@@ -11,30 +10,21 @@ module Question
 	end
 
 	def self.included(base)
-		@classes << base
-		base.has_one :question_properties, :as => Question, :autosave => true
-		base.alias_method_chain :question_properties, :autobuild
+		@classes << base		
+		base.extend ClassMethods
+		base.define_question_properties_accessors
 	end
 
-	## this will put Question properties into child classes    
-	def question_properties_with_autobuild
-		question_properties_without_autobuild || build_question_properties
-	end
-
-	def method_missing(meth, *args, &blk)
-		if question_properties.public_methods.include?(meth.to_s)
-			question_properties.send(meth, *args, &blk)
-		else
-			super
-		end
-	end
-
-	protected
-	def product_properties_must_be_valid
-		unless question_properties.valid?
-			question_properties.errors.each do |attr, message|
-				errors.add(attr, message)
+	module ClassMethods
+		def define_question_properties_accessors
+			all_attributes = QuestionProperties.content_columns.map(&:name)
+			ignored_attributes = ["created_at", "updated_at", "question_type"]
+			attributes_to_delegate = all_attributes - ignored_attributes			
+			attributes_to_delegate.each do |attrib|				
+				class_eval <<-RUBY
+					attr_accessible :#{attrib}
+				RUBY
+				end
 			end
 		end
 	end
-end

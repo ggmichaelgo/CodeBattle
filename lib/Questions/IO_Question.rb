@@ -1,6 +1,6 @@
 
 class IOQuestion < ActiveRecord::Base
-	include Question
+	acts_as_question
 
 	serialize :inputs
 	serialize :outputs	

@@ -12,6 +12,6 @@ class SolveController < ApplicationController
 		@code = Code.new(params[:code])
 		compiler = CompilerFactory.get @code.lang.to_i	
 		# render :json => @code
-		render :json => [compiler.run]
+		render :json => [compiler.run([5])]
 	end
 end

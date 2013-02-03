@@ -1,0 +1,83 @@
+.circle
+{
+	border-radius: 50%;
+	width: 255px;
+	height: 255px;	
+	background-color: #181818;
+}
+
+div
+{
+	border: 0px solid white;
+}
+
+.center_content
+{
+	text-align: center;
+	overflow-y: hidden;	
+	height: 496px;
+}
+
+#rank
+{
+	font-size: 130px;
+}
+
+.bar
+{
+	padding: 100px 0 100px 0;
+	vertical-align: middle;	
+}
+
+.bar table
+{
+	margin: 0 auto;
+}
+
+.bar td
+{
+	width: 255px;
+}
+
+.menu_icon
+{
+	display: inline-block;
+	width: 255px;
+	height: 255px;
+	text-decoration: none;
+	background-color: black;
+}
+.menu_icon#egg
+{
+	background: url('/assets/egg.png');
+}
+.menu_icon#egg:hover
+{
+	background-position: 0 255px;
+}
+.menu_icon#puzzle
+{
+	background: url('/assets/puzzle.png');
+}
+.menu_icon#puzzle:hover
+{
+	background-position: 0 255px;
+}
+
+.menu_icon#flag
+{
+	background: url('/assets/flag.png');
+}
+.menu_icon#flag:hover
+{
+	background-position: 0 255px;
+}
+.menu_icon#fist
+{
+	background: url('/assets/fist.png');
+}
+.menu_icon#fist:hover
+{
+	background-position: 0 255px;
+}
+

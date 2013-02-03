@@ -1,0 +1,25 @@
+<%= javascript_include_tag("sessions_index") %>
+<%= javascript_include_tag("jquery.console") %>
+<%= stylesheet_link_tag("layout") %>
+<%= stylesheet_link_tag("console") %>
+
+<table height=100% width=100%>
+	<tr>
+		<td>
+			<div class="center_content">
+				<div id='main'>
+					<a>
+					<%= image_tag('logo.png') %>
+					</a>
+					<BR>
+					<%= image_tag('arrow_up.png', :class=>"arrow", :onclick=>"show_login()")%>
+				</div>
+				<div id='login'>
+					<div id='console'></div>
+					<BR>
+					<%= image_tag('arrow_down.png', :class=>"arrow", :onclick=>"hide_login()")%>
+				</div>
+			</div>
+		</td>
+	</tr>
+</table>

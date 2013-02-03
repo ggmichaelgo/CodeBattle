@@ -2,13 +2,23 @@
 <html>
 <head>
 	<title>CodeBattle</title>
+	<link rel="shortcut icon" href="/assets/favicon.ico"/>	
 	<%= stylesheet_link_tag    "application", :media => "all" %>
 	<%= javascript_include_tag "application" %>	
-	<%= yield :head %>
 	<%= csrf_meta_tags %>
+	<%= yield :head %>	
 </head>
 <body>
-
+	<p class="notice"><%= notice %></p>
+	<p class="alert"><%= alert %></p>
+	<div>
+		<% if user_signed_in? %>
+			Singed in as <%= current_user.username %>
+			<%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+		<% else %>
+			<%= link_to "Sign up", new_user_session_path %>
+		<% end %>
+	</div>
 	<%= yield %>
 
 </body>

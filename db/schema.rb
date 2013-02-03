@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130129174801) do
+ActiveRecord::Schema.define(:version => 20130202215220) do
 
   create_table "codes", :force => true do |t|
     t.string   "code"
@@ -41,9 +41,6 @@ ActiveRecord::Schema.define(:version => 20130129174801) do
     t.datetime "updated_at",    :null => false
   end
 
-  create_table "restaurant", :force => true do |t|
-  end
-
   create_table "robot_questions", :id => false, :force => true do |t|
     t.integer  "id",            :default => 0, :null => false
     t.string   "name"
@@ -54,5 +51,34 @@ ActiveRecord::Schema.define(:version => 20130129174801) do
     t.datetime "updated_at",                   :null => false
     t.string   "robot_path"
   end
+
+  create_table "solved_questions", :force => true do |t|
+    t.integer  "question_number"
+    t.datetime "started_time"
+    t.datetime "solved_time"
+    t.integer  "user_info_id"
+  end
+
+  create_table "user_infos", :force => true do |t|
+    t.integer "points"
+    t.integer "user_id"
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "email",                  :default => "", :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.text     "username"
+  end
+
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
 end

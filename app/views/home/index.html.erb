@@ -1,0 +1,40 @@
+<%= javascript_include_tag ("home_index") %>
+<%= stylesheet_link_tag("layout") %>
+<%= stylesheet_link_tag("home") %>
+<%= stylesheet_link_tag("console") %>
+
+<table height=100% width=100%>
+	<tr>
+		<td>
+			<div class="center_content">
+				<div id='profile' class='bar'>
+					<table width='1020px' border=1><tr>
+						<td class='circle'>
+							<b id='rank'>1</b>
+						</td>
+						<td class='circle'>
+							
+						</td>
+						<td class='circle'>
+							
+						</td>
+						<td class='circle'>
+							
+						</td>
+						<BR>					
+					</tr></table>
+				<%= image_tag('arrow_down.png', :class=>"arrow", :onclick=>"scroll_up()")%>
+				</div>
+				
+				<div id='main' class='bar'>
+					<%= image_tag('arrow_up.png', :class=>"arrow", :onclick=>"scroll_down()")%>
+					<BR>
+					<a class='menu_icon' id='egg'> </a>
+					<a class='menu_icon' id='puzzle'> </a>
+					<a class='menu_icon' id='flag'> </a>
+					<a class='menu_icon' id='fist'> </a>
+				</div>
+			</div>
+		</td>
+	</tr>
+</table>

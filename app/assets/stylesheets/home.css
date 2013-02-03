@@ -1,32 +1,79 @@
+html
+{
+	overflow-y: hidden;
+}
+
+img
+{
+	cursor: pointer;
+}
+
+.red_bar
+{
+	position: relative;
+	top: 240px;
+	position: absolute;	
+	display: block;
+	width: 2000px;
+	height: 270px;
+	left: 2000px;
+	background-color: red;
+}
+
 .circle
 {
 	border-radius: 50%;
 	width: 255px;
 	height: 255px;	
-	background-color: #181818;
+	display: inline-block;
+	background-color: #181818;	
+}
+
+#about
+{
+	color: black;
+	font-size: 154px;
+	text-decoration: none;
+	position: relative;
+	top: 110px;
+	cursor: pointer;	
 }
 
 div
 {
-	border: 0px solid white;
+	border: 0px solid white;	
 }
 
 .center_content
 {
 	text-align: center;
 	overflow-y: hidden;	
-	height: 496px;
+	height: 496px;	
 }
 
-#rank
+.rank_tag
 {
-	font-size: 130px;
+	font-size: 38px;
+	position: relative;
+	top: 45px;
+	left: 9px;
+	color: white;
+}
+
+.rank {
+	font-size: 97px;
+	position: relative;
+	top: 115px;
+	left: -16px;
+	color: white;
 }
 
 .bar
 {
+	left: 2000px;
 	padding: 100px 0 100px 0;
-	vertical-align: middle;	
+	vertical-align: middle;		
+
 }
 
 .bar table
@@ -46,6 +93,10 @@ div
 	height: 255px;
 	text-decoration: none;
 	background-color: black;
+}
+.menu_icon a
+{
+	display: inline-block;	
 }
 .menu_icon#egg
 {

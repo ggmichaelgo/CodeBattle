@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::Base
-	protect_from_forgery
-	before_filter :auth_user
+	#protect_from_forgery
+	before_filter :authenticate
 
-	def auth_user
+	def authenticate
 		redirect_to new_user_session_path unless user_signed_in?
 	end
 

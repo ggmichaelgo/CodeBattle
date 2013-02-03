@@ -1,0 +1,41 @@
+
+<style type="text/css">
+.rank_board
+{
+	border-radius: 50%;
+	overflow-y: scroll;
+	display: block;
+	height: 255px;
+}
+.rank_board #selected
+{
+	color: white;
+}
+</style>
+<script type="text/javascript">
+function select_user()
+{	
+	var container = $('.rank_board'), scrollTo = $('.rank_board #selected');
+	container.animate({
+		scrollTop: scrollTo.offset().top - container.offset().top + container.scrollTop() - 115		
+	},'slow');	
+}
+</script>
+
+<table class='rank_board'>
+	<% rank = 1 %>
+	<tr><td><br><br></td></tr>	
+	<% @list.each do |user| %>
+		<% if user.username == current_user.username %>
+		<tr id='selected'>
+		<% else %>
+		<tr>
+		<% end %>
+			<td><%= rank %></td>
+			<td><%= user.username %> </td>
+			<td><%= user.user_info.points %></td>
+			<% rank+=1 %>
+		</tr>
+		<% end %>
+		<tr><td><br><br></td></tr>		
+	</table>

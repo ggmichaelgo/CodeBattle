@@ -1,5 +1,5 @@
 class SessionsController < Devise::SessionsController
-	skip_before_filter :auth_user
+	skip_before_filter :authenticate
 
 	# DELETE /resource/sign_out
 	def destroy

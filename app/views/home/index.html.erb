@@ -2,37 +2,65 @@
 <%= stylesheet_link_tag("layout") %>
 <%= stylesheet_link_tag("home") %>
 <%= stylesheet_link_tag("console") %>
-
-<table height=100% width=100%>
+	
+<% @list = User.all.sort! {|a,b| b.user_info.points <=> a.user_info.points} %>
+<br>
+<div>
+	<%= image_tag('logo_small.png', :style=>'display: block; margin: 0 auto') %>
+</div>
+<div class='red_bar'></div>
+<table width=100% style='top: -57px;position: relative;'>
 	<tr>
 		<td>
-			<div class="center_content">
+			<div class="center_content">				
 				<div id='profile' class='bar'>
-					<table width='1020px' border=1><tr>
+					<table width='1040px'><tr>
 						<td class='circle'>
-							<b id='rank'>1</b>
+							<b class='rank_tag'>#</b>
+							<b class='rank'>0</b>
 						</td>
+						<td></td>
 						<td class='circle'>
-							
+							<%= render 'shared/rank_table' %>
 						</td>
+						<td></td>
 						<td class='circle'>
-							
+							<%= image_tag('gear.png', :width => '200px', :style=>'position: relative; top:25px') %>
 						</td>
+						<td></td>
 						<td class='circle'>
-							
+							<b onclick="location = '/about'" id='about'>?</b>
 						</td>
-						<BR>					
+						<BR>
 					</tr></table>
-				<%= image_tag('arrow_down.png', :class=>"arrow", :onclick=>"scroll_up()")%>
+					<%= image_tag('arrow_down.png', :class=>"arrow", :onclick=>"scroll_up()")%>
 				</div>
 				
 				<div id='main' class='bar'>
 					<%= image_tag('arrow_up.png', :class=>"arrow", :onclick=>"scroll_down()")%>
 					<BR>
-					<a class='menu_icon' id='egg'> </a>
-					<a class='menu_icon' id='puzzle'> </a>
-					<a class='menu_icon' id='flag'> </a>
-					<a class='menu_icon' id='fist'> </a>
+						<table width='1040px'><tr>
+						<td class='circle'>
+							<a class='menu_icon' id='egg'></a>
+							<b class='description'>Boot Camp</b>
+						</td>
+						<td></td>
+						<td class='circle'>
+							<a class='menu_icon' id='puzzle'> </a>
+							<b class='description'>Question Bank</b>
+						</td>
+						<td></td>
+						<td class='circle'>
+							<a class='menu_icon' id='flag'> </a>
+							<b class='description'>Capture The Flag</b>
+						</td>
+						<td></td>
+						<td class='circle'>
+							<a class='menu_icon' id='fist'> </a>
+							<b class='description'>PvP</b>
+						</td>
+						<BR>					
+					</tr></table>					
 				</div>
 			</div>
 		</td>

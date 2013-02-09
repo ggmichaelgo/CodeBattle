@@ -6,12 +6,13 @@ html
 
 ::-webkit-scrollbar 
 { 
-    display: none; 
+	display: none; 
 }
 
 body
 {
 	background-color: black;
+	/*background-color: lightgrey;*/
 	height: 97%;
 }
 
@@ -46,4 +47,37 @@ body
 .arrow:hover
 {
 	opacity: 1;
+}
+
+
+.SolveButton {
+	border-top: 1px solid #ff0000;
+	background: #7a0000;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f71818), to(#7a0000));
+	background: -webkit-linear-gradient(top, #f71818, #7a0000);
+	background: -moz-linear-gradient(top, #f71818, #7a0000);
+	background: -ms-linear-gradient(top, #f71818, #7a0000);
+	background: -o-linear-gradient(top, #f71818, #7a0000);
+	padding: 5.5px 11px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+	-moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+	box-shadow: rgba(0,0,0,1) 0 1px 0;
+	text-shadow: rgba(0,0,0,.4) 0 1px 0;
+	color: white;
+	font-size: 12px;
+	font-family: Helvetica, Arial, Sans-Serif;
+	text-decoration: none;
+	vertical-align: middle;
+}
+.SolveButton:hover {
+	border-top-color: #690404;
+	background: #690404;
+	color: #ccc;
+}
+.SolveButton:active {
+	border-top-color: #661818;
+	background: #661818;
 }

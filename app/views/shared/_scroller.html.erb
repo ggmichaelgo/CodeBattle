@@ -1,0 +1,82 @@
+<style type="text/css">
+.scroller
+{
+	height: 108px;
+	width: 247px;
+	overflow-y: hidden;
+}
+.digit
+{
+	display: inline-block;
+	position: relative;	
+}
+.number
+{
+	font-size: 100px;
+	font-family: "Arial Rounded MT", Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	color: lightgrey;
+	margin: 0px 0px 90px 0px;
+	border: 0px solid white;
+	padding: 0px;
+}
+div
+{
+	border: 1px solid white;
+}
+</style>
+
+<script type="text/javascript">
+	var number = "0000"
+	function change_number(i , num)
+	{
+		$($('.digit')[i]).animate({
+		 top: -108*num
+		}, 80);
+	}
+	function scroll(target)
+	{
+		target = target.toString();
+		for(i=0 ; i<4-target.length ; i++)
+			change_number(i, 0);
+		for(i=target.length-1 ; i>=0 ; i--)
+		{
+			num = parseInt(number[i]);
+			while(num != parseInt(target[i]))
+			{				
+				num++;
+				if(num == 10)
+					num = 0;
+				change_number((4-target.length)+i, num);
+			}
+			number[i] = number.toString();
+		}
+	}
+</script>
+
+<div class='scroller'>
+	<div class='digit'>
+		<p>#</p>
+		<% (0...10).each do |i| %>
+		<p class='number'><%= i %></p>
+		<% end %>
+	</div>
+	<div class='digit'>
+		<p>#</p>
+		<% (0...10).each do |i| %>
+		<p class='number'><%= i %></p>
+		<% end %>
+	</div>
+	<div class='digit'>
+		<p>#</p>
+		<% (0...10).each do |i| %>
+		<p class='number'><%= i %></p>
+		<% end %>
+	</div>
+	<div class='digit'>
+		<p>#</p>
+		<% (0...10).each do |i| %>
+		<p class='number'><%= i %></p>
+		<% end %>
+	</div>
+</div>

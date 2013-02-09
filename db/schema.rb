@@ -20,14 +20,13 @@ ActiveRecord::Schema.define(:version => 20130202215220) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "io_questions", :id => false, :force => true do |t|
-    t.integer  "id",            :default => 0, :null => false
+  create_table "io_questions", :force => true do |t|
     t.string   "name"
     t.string   "question_type"
     t.text     "content"
     t.integer  "point"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
     t.text     "inputs"
     t.text     "outputs"
   end
@@ -41,14 +40,13 @@ ActiveRecord::Schema.define(:version => 20130202215220) do
     t.datetime "updated_at",    :null => false
   end
 
-  create_table "robot_questions", :id => false, :force => true do |t|
-    t.integer  "id",            :default => 0, :null => false
+  create_table "robot_questions", :force => true do |t|
     t.string   "name"
     t.string   "question_type"
     t.text     "content"
     t.integer  "point"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
     t.string   "robot_path"
   end
 

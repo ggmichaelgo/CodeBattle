@@ -1,0 +1,38 @@
+<%= stylesheet_link_tag 'bootcamp/solve.css' %>
+
+<script type="text/javascript">
+$(function() {
+	$("#lang_bar li").click(function(){
+		$(this).addClass("selected").siblings().removeClass("selected");
+	});
+});
+</script>
+
+<br>
+<div style='width: 100%; text-align:center'>
+	<%= image_tag('logo_small.png') %>
+</div>
+
+<center>
+	<table style='height: 70%; width: 1050px; text-align: center' border=0>
+		<tr>
+			<td width=50%>
+				<!-- @question.content.html_safe -->
+				<div class='panel'><%=  @question.content.html_safe %></div>
+			</td>
+			<td>
+				<div class='panel' id='notepad'> 
+					<textarea id='code' spellcheck="false"></textarea>
+					<div id='lang_bar'>
+						<ul>
+							<li class='selected'>Java</li>
+							<li>C++</li>
+							<li>Python</li>
+						</ul>
+						<b class='SolveButton' style='float: right'>Run</b>
+					</div>					
+				</div>
+			</td>
+		</tr>
+	</table>
+</center>

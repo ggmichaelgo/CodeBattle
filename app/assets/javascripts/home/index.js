@@ -2,7 +2,7 @@ function scroll_up()
 {
 	$('#profile, #main').animate({
 		opacity: 1.00,
-		top: '-=530'
+		top: '-=540'
 	}, 500, function() {
 		$('.rank_board').scrollTop(0);
 		$('.rank')[0].innerHTML = '0';
@@ -13,8 +13,9 @@ function scroll_down()
 {
 	$('#profile, #main').animate({
 		opacity: 1.00,
-		top: '+=530'
+		top: '+=540'
 	}, 500, function() {
+		rank_cnt = 0;
 		animate_rank();
 		select_user();
 	});
@@ -30,11 +31,7 @@ function animate_rank()
 	{
 		$('.rank')[0].innerHTML = rank_cnt++;	
 		setTimeout(animate_rank, 20);
-	}
-	else
-	{
-		rank_cnt = 0;
-	}
+	}	
 }
 
 function animate_bar()
@@ -51,25 +48,25 @@ function animate_bar()
 
 	$('.red_bar').animate({
 		left: 0
-	}, 1000, function(){ 
+	}, 600, function(){ 
 		$('.bar').animate({
 			left: 0
-		}, 1000, function(){ 
+		}, 600, function(){ 
 			$('.red_bar').animate({
 				left: 2000
-			}, 1000, function(){ });
+			}, 600, function(){ });
 		});
 	});
 }
 
 $(document).ready(function(){
-	$('.menu_icon').bind('click',function()
-	{
-		$(this).effect('explode', function(){
-			$(this).css('visibility', 'hidden');
-			$(this).show();
-		});
-	});
+	// $('.menu_icon').bind('click',function()
+	// {
+	// 	$(this).effect('explode', function(){
+	// 		$(this).css('visibility', 'hidden');
+	// 		$(this).show();
+	// 	});
+	// });
 
 	setTimeout(function(){		
 		animate_bar();
@@ -77,7 +74,7 @@ $(document).ready(function(){
 			$('.rank')[0].innerHTML = '0';
 			animate_rank();
 			select_user();
-		}, 3000);
+		}, 1800);
 	}, 500);
 });
 

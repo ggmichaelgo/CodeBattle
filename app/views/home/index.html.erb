@@ -1,12 +1,11 @@
-<%= javascript_include_tag ("home_index") %>
-<%= stylesheet_link_tag("layout") %>
+<%= javascript_include_tag ("home/index") %>
 <%= stylesheet_link_tag("home") %>
 <%= stylesheet_link_tag("console") %>
 	
 <% @list = User.all.sort! {|a,b| b.user_info.points <=> a.user_info.points} %>
 <br>
-<div>
-	<%= image_tag('logo_small.png', :style=>'display: block; margin: 0 auto') %>
+<div style='width: 100%; text-align:center'>
+	<%= image_tag('logo_small.png') %>
 </div>
 <div class='red_bar'></div>
 <table width=100% style='top: -57px;position: relative;'>
@@ -37,30 +36,28 @@
 				</div>
 				
 				<div id='main' class='bar'>
-					<%= image_tag('arrow_up.png', :class=>"arrow", :onclick=>"scroll_down()")%>
-					<BR>
-						<table width='1040px'><tr>
-						<td class='circle'>
-							<a class='menu_icon' id='egg'></a>
-							<b class='description'>Boot Camp</b>
-						</td>
-						<td></td>
-						<td class='circle'>
-							<a class='menu_icon' id='puzzle'> </a>
-							<b class='description'>Question Bank</b>
-						</td>
-						<td></td>
-						<td class='circle'>
-							<a class='menu_icon' id='flag'> </a>
-							<b class='description'>Capture The Flag</b>
-						</td>
-						<td></td>
-						<td class='circle'>
-							<a class='menu_icon' id='fist'> </a>
-							<b class='description'>PvP</b>
-						</td>
-						<BR>					
-					</tr></table>					
+					<%= image_tag('arrow_up.png', :class=>"arrow", :onclick=>"scroll_down()")%>					
+					<table width='1040px'><tr>
+					<td class='circle'>
+						<a class='menu_icon' id='egg' onclick='location="/bootcamp"'></a>
+						<b class='description'>Boot Camp</b>
+					</td>
+					<td></td>
+					<td class='circle'>
+						<a class='menu_icon' id='puzzle'> </a>
+						<b class='description'>Question Bank</b>
+					</td>
+					<td></td>
+					<td class='circle'>
+						<a class='menu_icon' id='flag'> </a>
+						<b class='description'>Capture The Flag</b>
+					</td>
+					<td></td>
+					<td class='circle'>
+						<a class='menu_icon' id='fist'> </a>
+						<b class='description'>PvP</b>
+					</td>
+				</tr></table>
 				</div>
 			</div>
 		</td>

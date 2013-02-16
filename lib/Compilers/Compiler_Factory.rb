@@ -3,7 +3,7 @@ class CompilerFactory
 	@@langs = [
 		:Java,
 		:CPP,
-		:Python
+		:Python		
 	]
 	@@container = {
 		:Java => JavaCompiler,

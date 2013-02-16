@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -25,8 +26,10 @@ ActiveRecord::Schema.define(:version => 20130202215220) do
     t.string   "question_type"
     t.text     "content"
     t.integer  "point"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.string   "category"
+    t.integer  "category_index"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
     t.text     "inputs"
     t.text     "outputs"
   end
@@ -36,8 +39,10 @@ ActiveRecord::Schema.define(:version => 20130202215220) do
     t.string   "question_type"
     t.text     "content"
     t.integer  "point"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.string   "category"
+    t.integer  "category_index"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "robot_questions", :force => true do |t|
@@ -45,9 +50,12 @@ ActiveRecord::Schema.define(:version => 20130202215220) do
     t.string   "question_type"
     t.text     "content"
     t.integer  "point"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.string   "category"
+    t.integer  "category_index"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
     t.string   "robot_path"
+    t.string   "password"
   end
 
   create_table "solved_questions", :force => true do |t|

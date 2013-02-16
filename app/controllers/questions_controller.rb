@@ -8,7 +8,9 @@ class QuestionsController < ApplicationController
 	end
 
 	def create
-		@question = IOQuestion.new(params[:question])
+		#@question = IOQuestion.new(params[:question])
+		@question = RobotQuestion.new(params[:question])
+		
 		@question.save
 		render :json => 1
 	end

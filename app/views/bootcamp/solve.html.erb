@@ -1,38 +1,47 @@
 <%= stylesheet_link_tag 'bootcamp/solve.css' %>
-
-<script type="text/javascript">
-$(function() {
-	$("#lang_bar li").click(function(){
-		$(this).addClass("selected").siblings().removeClass("selected");
-	});
-});
-</script>
+<%= javascript_include_tag 'bootcamp/solve' %>
+<%= javascript_include_tag 'catchTab' %>
+<%= javascript_include_tag 'pacman' %>
 
 <br>
 <div style='width: 100%; text-align:center'>
 	<%= image_tag('logo_small.png') %>
 </div>
 
+<%= form_for @code, :url => {:controller => 'bootcamp', :action => 'run'}, :remote => true do |f| -%>
 <center>
 	<table style='height: 70%; width: 1050px; text-align: center' border=0>
 		<tr>
-			<td width=50%>
-				<!-- @question.content.html_safe -->
-				<div class='panel'><%=  @question.content.html_safe %></div>
+			<td width='50%'>
+				<div class='panel'><%=  @question.content %></div>
 			</td>
-			<td>
-				<div class='panel' id='notepad'> 
-					<textarea id='code' spellcheck="false"></textarea>
-					<div id='lang_bar'>
-						<ul>
-							<li class='selected'>Java</li>
-							<li>C++</li>
-							<li>Python</li>
-						</ul>
-						<b class='SolveButton' style='float: right'>Run</b>
-					</div>					
+			<td width='50%' height='500px'>	
+				<div id='output-notepad'>
+					<div class='panel' id='notepad'>
+						<%= f.hidden_field :q_id, :value => @question.category_index %>
+						<%= f.text_area :code, :spellcheck => false, :id => 'code', :onkeydown => 'return catchTab(this,event)', :onclick => 'hide_output()'%>
+						<div id='lang_bar'>
+							<ul>
+								<% (0...CompilerFactory.langs.length).each do |i| %>
+								<li class='selected'><%= CompilerFactory.langs[i] %></li>
+								<% end %>
+							</ul>
+							<script type="text/javascript">
+							$($('#lang_bar li').toggleClass()[0]).toggleClass();
+							</script>
+							<b class='SolveButton' style='float: right' onclick="show_output();">Run</b>	
+						</div>
+					</div>
+					<div class='panel' id='output'> 
+						<div id="pacman">
+							<%= image_tag 'pacman.gif'%>
+							<i> ' ' ' ' ' ' ' ' ' ' ' ' ' ' </i>
+						</div>
+						<textarea class='homebrew' style='height: 97%'></textarea>
+					</div>
 				</div>
 			</td>
 		</tr>
 	</table>
 </center>
+<% end -%>

@@ -3,7 +3,7 @@ class CreateCodes < ActiveRecord::Migration
     create_table :codes do |t|
       t.string :code
       t.string :lang
-      t.string :question
+      t.string :q_id
 
       t.timestamps
     end

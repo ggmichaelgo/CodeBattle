@@ -12,6 +12,7 @@ class CreateRobotQuestions < ActiveRecord::Migration
 		SQL
 
 		add_column :robot_questions, :robot_path, :string
+		add_column :robot_questions, :password, :string
 	end
 
 	def down

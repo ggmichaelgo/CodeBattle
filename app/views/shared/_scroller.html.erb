@@ -26,57 +26,59 @@ div
 }
 </style>
 
-<script type="text/javascript">
-	var number = "0000"
-	function change_number(i , num)
-	{
-		$($('.digit')[i]).animate({
-		 top: -108*num
-		}, 80);
-	}
-	function scroll(target)
-	{
-		target = target.toString();
-		for(i=0 ; i<4-target.length ; i++)
-			change_number(i, 0);
-		for(i=target.length-1 ; i>=0 ; i--)
-		{
-			num = parseInt(number[i]);
-			while(num != parseInt(target[i]))
-			{				
-				num++;
-				if(num == 10)
-					num = 0;
-				change_number((4-target.length)+i, num);
-			}
-			number[i] = number.toString();
-		}
-	}
-</script>
+<script src="/assets/scroller.js?body=1" type="text/javascript"></script>
 
 <div class='scroller'>
 	<div class='digit'>
 		<p>#</p>
-		<% (0...10).each do |i| %>
-		<p class='number'><%= i %></p>
-		<% end %>
+		<p class='number'>0</p>
+		<p class='number'>1</p>
+		<p class='number'>2</p>
+		<p class='number'>3</p>
+		<p class='number'>4</p>
+		<p class='number'>5</p>
+		<p class='number'>6</p>
+		<p class='number'>7</p>
+		<p class='number'>8</p>
+		<p class='number'>9</p>
 	</div>
 	<div class='digit'>
 		<p>#</p>
-		<% (0...10).each do |i| %>
-		<p class='number'><%= i %></p>
-		<% end %>
+		<p class='number'>0</p>
+		<p class='number'>1</p>
+		<p class='number'>2</p>
+		<p class='number'>3</p>
+		<p class='number'>4</p>
+		<p class='number'>5</p>
+		<p class='number'>6</p>
+		<p class='number'>7</p>
+		<p class='number'>8</p>
+		<p class='number'>9</p>
 	</div>
 	<div class='digit'>
 		<p>#</p>
-		<% (0...10).each do |i| %>
-		<p class='number'><%= i %></p>
-		<% end %>
+		<p class='number'>0</p>
+		<p class='number'>1</p>
+		<p class='number'>2</p>
+		<p class='number'>3</p>
+		<p class='number'>4</p>
+		<p class='number'>5</p>
+		<p class='number'>6</p>
+		<p class='number'>7</p>
+		<p class='number'>8</p>
+		<p class='number'>9</p>
 	</div>
 	<div class='digit'>
 		<p>#</p>
-		<% (0...10).each do |i| %>
-		<p class='number'><%= i %></p>
-		<% end %>
+		<p class='number'>0</p>
+		<p class='number'>1</p>
+		<p class='number'>2</p>
+		<p class='number'>3</p>
+		<p class='number'>4</p>
+		<p class='number'>5</p>
+		<p class='number'>6</p>
+		<p class='number'>7</p>
+		<p class='number'>8</p>
+		<p class='number'>9</p>
 	</div>
 </div>

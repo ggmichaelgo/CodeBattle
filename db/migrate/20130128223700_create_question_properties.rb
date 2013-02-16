@@ -6,6 +6,7 @@ class CreateQuestionProperties < ActiveRecord::Migration
 			t.text :content
 			t.integer :point
 			t.string :category
+			t.integer :category_index
 			t.timestamps
 		end
 	end

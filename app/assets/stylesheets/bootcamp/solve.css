@@ -13,9 +13,26 @@
 
 }
 
+#output-notepad
+{
+	overflow: hidden;
+	height: 500px;
+}
+
 #notepad
 {
-	background-color: grey;	
+	background-color: grey;
+	display: inline-block;
+	position: relative;
+	z-index: 2;
+}
+
+#output
+{
+	display: inline-block;	
+	position: relative;
+	top: -500px;
+	z-index: 1;
 }
 
 #code
@@ -86,7 +103,15 @@
 	font-size: 13px;
 }
 
+#pacman
+{	
+	position: absolute;	
+	top: 230px;
+	left: 180px;
+	display: none;
+}
 
-
-
-
+#pacman i
+{
+	color: Lime;
+}

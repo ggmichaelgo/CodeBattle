@@ -4,7 +4,12 @@ class IOJudge < Judge
 
 	def run
 		compiler.compile @code
-		output = compiler.run
-		
+		output = []
+		solved = true
+		(0..@question.inputs.count-1).each do |i|
+			output << compiler.run( @question.inputs[i] )
+			solved = false if output.last != @question.outputs[i] && output.last != (@question.outputs[i] + "\n")
+		end
+		return output, solved
 	end
 end

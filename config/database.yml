@@ -13,7 +13,7 @@ development:
 
 test:
   adapter: mysql2
-  database: CodeBattle
+  database: CodeBattleTest
   pool: 5
   timeout: 5000
   username: root

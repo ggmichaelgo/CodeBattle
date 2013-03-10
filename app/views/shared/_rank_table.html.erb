@@ -3,9 +3,13 @@
 .rank_board
 {
 	border-radius: 50%;
-	overflow-y: scroll;
+	overflow: auto;
 	display: block;
 	height: 255px;
+	width: 270px;
+	color: black;
+	position: relative;
+	left: -7px;
 }
 .rank_board #selected
 {
@@ -17,25 +21,26 @@ function select_user()
 {	
 	var container = $('.rank_board'), scrollTo = $('.rank_board #selected');
 	container.animate({
-		scrollTop: scrollTo.offset().top - container.offset().top + container.scrollTop() - 115		
-	},'slow');	
+		scrollTop: scrollTo.offset().top - container.offset().top + container.scrollTop() - 115
+	},'slow');
 }
 </script>
-
+<div style='overflow: hidden; width: 255px'>
 <table class='rank_board'>
 	<% rank = 1 %>
 	<tr><td><br><br></td></tr>	
 	<% @list.each do |user| %>
-		<% if user.username == current_user.username %>
-		<tr id='selected'>
+	<% if user.username == current_user.username %>
+	<tr id='selected'>
 		<% else %>
 		<tr>
-		<% end %>
+			<% end %>
 			<td><%= rank %></td>
 			<td><%= user.username %> </td>
 			<td><%= user.user_info.points %></td>
 			<% rank+=1 %>
 		</tr>
 		<% end %>
-		<tr><td><br><br></td></tr>		
-	</table>
+	<tr><td><br><br></td></tr>
+</table>
+</div>

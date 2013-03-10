@@ -1,23 +1,35 @@
 module Question	
 	@classes = []
+	@count = 0
+	@deck = []
 
 	def self.load_classes
 		# exceptions = ["lib/Questions/question.rb", "lib/Questions/Question_Properties.rb"]
 		# (Dir.glob("lib/Questions/*.rb") - exceptions).each do |path|
 		# 	require path
 		# end
-		IOQuestion
-		RobotQuestion
+		if @classes.count < 2 
+			RobotQuestion
+			IOQuestion			
+		end		
+	end
+
+	def self.rnd
+		@deck = Question.category_all('Bank') if @deck.count == 0
+		@deck.shuffle!
+		return @deck.first	
+	end
+
+	def self.count
+		@count = all.count if @count == 0		
 	end
 
 	def self.all
 		arr = []
-		if @classes.count == 0
-			load_classes
-		end
+		load_classes
 		@classes.each do |base|
 			arr.concat base.all
-		end
+		end		
 		return arr
 	end
 
@@ -29,9 +41,7 @@ module Question
 
 	def self.category_all(category)
 		result = []
-		if @classes.count == 0
-			load_classes
-		end
+		load_classes
 		@classes.each do |t|
 			questions = t.where("category = '"+ category + "'")
 			if questions.count > 0
@@ -42,9 +52,7 @@ module Question
 	end
 
 	def self.category_find(category, id)
-		if @classes.count == 0
-			load_classes
-		end
+		load_classes
 		q = nil
 		@classes.each do |t|
 			q = t.where("category = '"+ category + "'&& category_index = "+ id.to_s)
@@ -56,14 +64,12 @@ module Question
 	end
 
 	def self.find(id)
-		if @classes.count == 0
-			load_classes
-		end
+		load_classes
 		@classes.each do |t|
-			question = t.find(id)
-			if(question != nil)
+			question = t.find_by_id(id)
+			if question != nil
 				return question
-			end
+			end			
 		end
 	end
 
@@ -71,7 +77,7 @@ module Question
 		def define_question_properties_accessors
 			all_attributes = QuestionProperties.content_columns.map(&:name)
 			ignored_attributes = ["created_at", "updated_at", "question_type"]
-			attributes_to_delegate = all_attributes - ignored_attributes						
+			attributes_to_delegate = all_attributes - ignored_attributes
 			attributes_to_delegate.each do |attrib|				
 				class_eval <<-RUBY
 					attr_accessible :#{attrib}

@@ -1,6 +1,6 @@
 ::-webkit-scrollbar 
 { 
-    display: none; 
+	display: none; 
 }
 
 html, body
@@ -13,6 +13,12 @@ html, body
 div
 {
 	/*border: 1px white solid;*/
+}
+
+.circular_solved_tag
+{
+	position: relative;
+	top: -33px;
 }
 
 #carpet
@@ -35,12 +41,12 @@ div
 .question_cell
 {
 	border-radius: 50%;
-	width: 100px;
-	height: 100px;
-	border: 5px solid grey;
+	display: inline-block;
+	width: 120px;
+	height: 120px;
 	background-color: #303030;
 	text-align: center;	
-	padding: 5px;
+	padding: 0px;	
 	cursor: pointer;
 }
 
@@ -54,7 +60,6 @@ div
 {
 	font-size: 20px;
 	position: relative;
-	top: -30px;
 	left: 5px;
 	color: grey;
 }
@@ -65,5 +70,5 @@ div
 	color: white;
 	position: relative;
 	left: -8px;
-	top: 6px;
+	top: 50px;
 }

@@ -1,0 +1,74 @@
+<br>
+<div style='width: 100%; text-align:center'>
+	<%= image_tag 'logo_small.png', :onclick => "location =  '/'", :style => "cursor: pointer" %>	
+</div>
+
+<br>
+<div class='red_bar'>
+	<div>
+		<b>CLEAR!</b>	
+	</div>
+</div>
+
+<% if @solved_question.solved_time != nil %>
+	<script type="text/javascript">
+		$(function(){
+			show_solved_tag();
+		})		
+	</script>
+<% end %>
+
+<%= form_for @code, :url => {:controller => 'bootcamp', :action => 'run'}, :remote => true do |f| -%>
+<center>
+	<table style='height: 70%; width: 1050px; text-align: center' border=0>
+		<tr>
+			<td width='50%'>
+				<div class='panel'><%= image_tag 'solved_tag.png', :id => 'solve_tag' %>					
+					<div style='display: inline-block;width: 100%;position: relative;top: -80px;'>
+						<%=  @question.content %>
+					</div>
+				</div>
+			</td>
+			<td width='50%' height='500px'>	
+				<div id='output-notepad'>
+					<div class='panel' id='notepad'>
+						<%= f.hidden_field :q_id, :value => @question.category_index %>
+						<%= f.hidden_field :lang %>
+						<%= f.hidden_field :code %>
+						<div id='ace_code' onclick='hide_output()'><%= @code.code%> </div>
+						<div id='lang_bar'>
+							<ul>
+								<% (0...CompilerFactory.langs.length).each do |i| %>
+								<li class='selected'><%= CompilerFactory.langs[i] %></li>
+								<% end %>
+							</ul>
+							<script type="text/javascript">
+							$($('#lang_bar li').toggleClass()[0]).toggleClass();
+							</script>
+							<b class='SolveButton' style='float: right' onclick="show_output();">Run</b>	
+						</div>
+					</div>
+					<div class='panel' id='output'> 
+						<div id="pacman">
+							<%= image_tag 'pacman.gif'%>
+							<i> ' ' ' ' ' ' ' ' ' ' ' ' ' ' </i>
+						</div>
+						<textarea class='homebrew' style='height: 97%'></textarea>
+					</div>
+				</div>
+			</td>
+		</tr>
+	</table>
+</center>
+<% end -%>
+
+<%= javascript_include_tag 'ace/ace' %>
+<script>
+    var editor = ace.edit("ace_code");
+    editor.setTheme("ace/theme/monokai");
+    editor.getSession().setMode("ace/mode/java");
+
+    var question_code = ace.edit("question_code");
+    question_code.setTheme("ace/theme/monokai");
+    question_code.getSession().setMode("ace/mode/java");
+</script>

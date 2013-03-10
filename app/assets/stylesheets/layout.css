@@ -9,6 +9,12 @@ html
 	display: none; 
 }
 
+
+::-moz-scrollbar 
+{ 
+	display: none; 
+}
+
 body
 {
 	background-color: black;

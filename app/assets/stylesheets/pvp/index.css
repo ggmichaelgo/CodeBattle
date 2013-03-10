@@ -1,0 +1,72 @@
+::-webkit-scrollbar 
+{ 
+	display: none; 
+}
+
+html, body
+{
+	height: 98%;
+	overflow-x: hidden;
+}
+
+div
+{
+	/*border: 1px white solid;*/
+}
+
+.circular_solved_tag
+{
+	position: relative;
+	top: -33px;
+}
+
+#carpet
+{
+	background-color: red;	
+	position: relative;
+	width: 800px;
+	margin: 0 auto;
+	height: 1000px;
+	top: -1000px;
+	position: absolute;
+	z-index: -1;	
+}
+
+.row
+{
+	opacity: 0.0;
+}
+
+.question_cell
+{
+	border-radius: 50%;
+	display: inline-block;
+	width: 120px;
+	height: 120px;
+	background-color: #303030;
+	text-align: center;	
+	padding: 0px;	
+	cursor: pointer;
+}
+
+.question_cell:hover
+{
+	box-shadow: 0px 0px 20px white;
+	rota		
+}
+
+.question_number_tag
+{
+	font-size: 20px;
+	position: relative;
+	left: 5px;
+	color: grey;
+}
+
+.question_title
+{
+	font-size: 50px;
+	color: white;
+	position: relative;
+	top: 50px;
+}

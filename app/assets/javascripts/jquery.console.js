@@ -218,7 +218,7 @@
             label.html(label.html().replace(' ','&nbsp;'));
             
             if(username != '')
-                prompt = $('<span class="jquery-console-prompt" style="-webkit-text-security: disc;"></span>');                
+                prompt = $('<span class="jquery-console-prompt" style="-webkit-text-security: disc; font-size: 0px"></span>');                
             else
                 prompt = $('<span class="jquery-console-prompt" style="-webkit-text-security: none;"></span>');
             promptBox.append(prompt);

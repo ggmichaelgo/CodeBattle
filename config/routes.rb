@@ -2,7 +2,8 @@ CodeBattle::Application.routes.draw do
  
   devise_for :users, :controllers => {:sessions => 'sessions', :registrations => 'registrations'} 
 
-  resources :codes, :questions, :ioquestions  # The priority is based upon order of creation:
+  resources :codes, :questions, :ioquestions, :robotquestions  # The priority is based upon order of creation:
+  resources :solved_questions
   # first created -> highest priority.
 
   # Sample of regular route:
@@ -61,5 +62,11 @@ CodeBattle::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
 
+  match 'pvp/battle/:id' => 'pvp#battle'
+  match 'ctf/:id' => 'ctf#detail'
+
   match ':controller(/:action(/:id))(.:format)'
+  match 'questions/edit/:category/:id' => 'questions#edit'
+  match 'questions/edit/:category/:id/update' => 'questions#update'
+  match 'questions/new/:category' => 'questions#create'
 end

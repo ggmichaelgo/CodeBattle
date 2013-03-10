@@ -11,14 +11,40 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130202215220) do
+ActiveRecord::Schema.define(:version => 20130304003102) do
+
+  create_table "battles", :force => true do |t|
+    t.string   "state"
+    t.integer  "question_id"
+    t.integer  "coders_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "coders", :force => true do |t|
+    t.string   "state"
+    t.integer  "battle_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "codes", :force => true do |t|
-    t.string   "code"
     t.string   "lang"
     t.string   "question"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "q_id"
+    t.integer  "coder_id"
+    t.text     "code"
+  end
+
+  create_table "ctfs", :force => true do |t|
+    t.string   "title"
+    t.integer  "question_id"
+    t.integer  "capturer_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "io_questions", :force => true do |t|
@@ -59,7 +85,9 @@ ActiveRecord::Schema.define(:version => 20130202215220) do
   end
 
   create_table "solved_questions", :force => true do |t|
-    t.integer  "question_number"
+    t.string   "question_category"
+    t.integer  "question_index"
+    t.text     "code"
     t.datetime "started_time"
     t.datetime "solved_time"
     t.integer  "user_info_id"
@@ -68,6 +96,8 @@ ActiveRecord::Schema.define(:version => 20130202215220) do
   create_table "user_infos", :force => true do |t|
     t.integer "points"
     t.integer "user_id"
+    t.integer "coder_id"
+    t.string  "username", :limit => 20
   end
 
   create_table "users", :force => true do |t|

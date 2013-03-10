@@ -1,3 +1,40 @@
+html, body
+{
+	overflow-x: hidden;
+}
+
+#solve_tag
+{
+	float: left;
+	position: relative;
+	z-index: 2;
+}
+
+#solve_tag:hover
+{
+	opacity: 0.1;
+}
+
+.red_bar
+{	
+	position: absolute;	
+	display: none;
+	top: 240px;
+	width: 100%;
+	height: 280px;
+	left: 2000px;
+	background-color: red;
+	z-index: 4;
+	text-align: center;
+	vertical-align: middle;
+}
+.red_bar b
+{
+	color: white;
+	font-size: 200px;
+	position: relative;
+	top: 120px;
+}
 
 .panel
 {
@@ -6,6 +43,7 @@
 	height: 500px;
 	border-radius: 10px;
 	background-color: grey;
+	opacity: 1;
 }
 
 #question
@@ -35,27 +73,26 @@
 	z-index: 1;
 }
 
-#code
+#ace_code, #question_code, #opponent_code
 {
 	background-color: black;
 	border-radius: 10px;
 	border: 1px solid black;
-	width: 97%;
-	height: 97%;
-	margin-top: 4px;
-
+	width: 100%;
+	height: 100%;
+	text-align: left;
 	color: rgb(40, 254, 20);
 	font-size: 13px;
+	border-radius: 10px;
+	z-index: 1;
 }
 
 #lang_bar
 {
-	width: 100%;
-	height: 30px;	
-	position: relative;
-	top: -60px;
-	left: -10px;	
-	background-color: black;
+	position: relative;	
+	top: -67px;
+	width: 470px;
+	z-index: 2;
 }
 #lang_bar ul
 { 
@@ -98,7 +135,7 @@
 	width: 97%;
 	height: 50%;
 	margin-top: 4px;
-
+	font-family: monaco;
 	color: rgb(40, 254, 20);
 	font-size: 13px;
 }

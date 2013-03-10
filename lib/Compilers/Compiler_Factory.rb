@@ -3,7 +3,7 @@ class CompilerFactory
 	@@langs = [
 		:Java,
 		:CPP,
-		:Python		
+		:Python	
 	]
 	@@container = {
 		:Java => JavaCompiler,
@@ -15,8 +15,8 @@ class CompilerFactory
 	end
 
 	def CompilerFactory.get lang
-		if(lang.class == Fixnum)
-			lang = @@langs[lang]
+		if(lang.to_i.class == Fixnum)
+			lang = @@langs[lang.to_i]
 		end
 		return @@container[lang].new
 	end

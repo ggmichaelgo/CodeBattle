@@ -8,46 +8,24 @@ class JavaCompiler < Compiler
 		super
 		@path += "Java/"
 		@className = Digest::MD5.hexdigest(Time.now.to_s).gsub(/[0-9]/, '').upcase
-	end
-
-	def test
-		compile @test_code
-		puts run ['5']
 	end	
-
-	def robot_test
-		compile @test_code
-		return run_with_robot 'lib/Robots/BootCamp1.rb'
-	end
 
 	def changeClassName code
 		if code.index('public class') == nil
 			code['class'] = 'public class'
 		end		
-		code = code.gsub(/class .*/, 'class ' + @className)
+		code = code.gsub(/class .*{/, 'class ' + @className + " {\n")
+		code = code.gsub(/class .*\n.*{/, 'class ' + @className + " {\n")
 		return code
 	end
 
 	def compile code
-		code = changeClassName code		
+		code = changeClassName(code)
 		File.open(path + @className+'.java', 'w') {|f| f.write(code) }
-		output = system('javac ' + path + @className + '.java')
-	end	
-
-	def run input
-		result = '!'
-		Open3.popen3('java -classpath ' + Dir.pwd + '/' + @path + ' ' + @className) do | istream, ostream, error, t|
-			t = Thread.new(istream, ostream, t, input) do |i,o,t,input|
-				input.split('\n').each do |line|					
-					i.puts line
-				end
-				Thread.current['result'] = o.readlines
-			end
-			sleep 0.5
-			t.terminate
-			result = t['result'].join
-		end
-		return result
+		compiler_in, compiler_out, compiler_err = Open3.popen3('javac ' + path + @className + '.java')
+		output = compiler_err.readlines	
+		return output if output != nil
+		return true
 	end
 
 	def robot_talk message		
@@ -60,28 +38,46 @@ class JavaCompiler < Compiler
 	end
 
 	def run_with_robot robot
-		result = []
-		@pipe = IO.popen('ruby ' + robot, 'w+')
-		java = IO.popen('java -classpath ' + Dir.pwd + '/' + @path + ' ' + @className)
-		t = Thread.new {
-			Thread.current['result'] = []
+		@result = []
+		robot_in, robot_out, robot_err, robot_thr = Open3.popen3('ruby ' + robot)
+		java_in, java_out, java_err, java_thr = Open3.popen3('java -classpath ' + Dir.pwd + '/' + @path + ' ' + @className)
+		t = Thread.new(robot_in, robot_out, robot_thr, robot_err, java_in, java_out, java_thr, java_err) do |r_in, r_out, r_thr, r_err, j_in, j_out, j_thr, j_err|
+			j_in.sync = false
 			while 1==1
-				response = java.gets
-				if response.nil?
-					break
+				j_line = j_out.gets
+				r_in.puts j_line if j_line != nil
+				r_message = r_out.gets.chomp
+				@result << j_line
+				if r_message.length > 0
+					j_in.puts r_message
+					@result.pop
+					@result << r_message
 				end
-				robot_message = robot_talk response.chomp
-				Thread.current['result'] << robot_message
 			end
-		}
-		sleep 3
-		t.terminate
-		java.close
-		@pipe.close
-		if t['result'].last == nil
-			t['result'].pop
+		end		
+		sleep 1
+
+		Process.kill("HUP", robot_thr.pid) if robot_thr.alive?
+		# t.terminate
+		return @result
+	end
+
+	def run input
+		result = '!'
+		Open3.popen3('java -classpath ' + Dir.pwd + '/' + @path + ' ' + @className) do | istream, ostream, error, xhr|
+			t = Thread.new(istream, ostream, t, input) do |i,o,t,input|
+				input.split('\n').each do |line|
+					i.puts line
+				end
+				Thread.current['result'] = o.readlines
+			end
+			sleep 1			
+			result = t['result']
+			Process.kill("HUP", xhr.pid) if xhr.alive?
 		end
-		return t['result']
+		result = 'Run/Compiler Error!' if result == nil
+		puts result
+		return result
 	end
 end
 

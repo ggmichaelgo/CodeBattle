@@ -1,9 +1,10 @@
+<font style='color: white'>
 <h2>Sign up</h2>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
 
   <div><%= f.label :username %><br />
-  <%= f.text_field :username, :autofocus => true %></div>
+  <%= f.text_field :username, :autofocus => true, :maxlength => 15 %></div>
 
   <div><%= f.label :email %><br />
   <%= f.email_field :email %></div>
@@ -18,3 +19,4 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+</font>

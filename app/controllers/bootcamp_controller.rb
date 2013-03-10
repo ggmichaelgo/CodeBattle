@@ -1,25 +1,49 @@
 class BootcampController < ApplicationController
 	def index
+		@solved_questions = current_user.user_info.solved_questions.find_all{ |x| x.question_category == 'BootCamp'} unless current_user.user_info.solved_questions		
 		@list = Question.category_all('BootCamp')
-		#@list = Question.all
+		@list.sort! {|x,y| x.category_index <=> y.category_index}
+		@solved_questions = current_user.user_info.solved_questions.select { |x| x.solved_time != nil}
 	end
 
 	def solve
-		@code = Code.new
 		list = Question.category_all('BootCamp')
-		list.each do |q|
-			puts q.category_index
-		end
 		@question = list.find{|x| x.category_index == Integer(params[:id])}
-		@question.content = @question.content.html_safe	
+		@question.content = @question.content.html_safe
+
+		@solved_question = current_user.user_info.solved_questions.find { |x| 
+			x.question_category == 'BootCamp' && x.question_index == Integer(params[:id])
+		}
+		if @solved_question == nil
+			@solved_question = current_user.user_info.solved_questions.create(
+				:question_index => Integer(params[:id]),
+				:question_category => 'BootCamp',
+				:code => '',
+				:started_time => Time.now)			
+		end
+		@code = Code.new(:code => @solved_question.code)
 	end
 
-	def run 		
+	def run
 		@code = Code.new(params[:code])
 		q = Question.category_find('BootCamp', @code.q_id)
-		q = q.first		
-		judge = JudgeFactory.get q, @code.code, :Java
-		result = judge.run		
+		q = q.first
+		
+		judge = JudgeFactory.get q, @code
+		result = judge.run
+
+		solved_question = current_user.user_info.solved_questions.find { |x| 
+			x.question_category == 'BootCamp' && x.question_index == Integer(@code.q_id)
+		}
+		solved_question.code = @code.code
+
+		#solved the question
+		if result.last == true
+			solved_question.solved_time = Time.now 
+			current_user.user_info.points += 1
+		end
+		solved_question.save
+		current_user.user_info.save
 		render :json => result
 	end
 end

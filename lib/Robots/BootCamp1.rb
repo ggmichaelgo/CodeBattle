@@ -1,13 +1,13 @@
-pw = '1225'
+pw = '6789'
 begin
 	loop do
 		guess = gets
-		puts guess
+		puts ""
 		if guess.chomp == pw
 			puts pw
 			break
 		end		
-		$stdout.flush		
+		$stdout.flush
 	end
 rescue Errno::EPIPE
 

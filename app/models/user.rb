@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
   def build_user_info
     super
     self.user_info.points = 0
-    self.user_info.save
+    self.user_info.username = self.username
+    self.user_info.save    
   end
 end

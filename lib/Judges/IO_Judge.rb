@@ -8,7 +8,8 @@ class IOJudge < Judge
 		solved = true
 		(0..@question.inputs.count-1).each do |i|
 			output << compiler.run( @question.inputs[i] )
-			solved = false if output.last != @question.outputs[i] && output.last != (@question.outputs[i] + "\n")
+			output[i] = output[i].join('')
+			solved = false if output[i] != @question.outputs[i] && output[i] != (@question.outputs[i] + "\n") && (output[i]+"\n") != @question.outputs[i]
 		end
 		return output, solved
 	end

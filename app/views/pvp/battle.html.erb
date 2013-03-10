@@ -1,0 +1,112 @@
+<%= stylesheet_link_tag 'bootcamp/solve.css' %>
+<%= stylesheet_link_tag 'pvp/battle.css' %>
+
+<%= javascript_include_tag 'bootcamp/solve' %>
+<%= javascript_include_tag 'pvp.js' %>
+<%= javascript_include_tag 'catchTab' %>
+<%= javascript_include_tag 'pacman' %>
+<%= javascript_include_tag 'scroller' %>
+
+<br>
+<div class='red_bar'>
+	<div>
+		<b>VICTORY!</b>	
+	</div>
+</div>
+<div class='blue_bar'>
+	<div>
+		<b>DEFEATED...</b>	
+	</div>
+</div>
+
+<div style='width: 100%; text-align:center'>
+	<%= image_tag 'logo_small.png', :onclick => "location =  '/pvp'", :style => "cursor: pointer" %>
+</div>
+
+<%= form_for @code, :url => {:controller => 'pvp', :action => 'run' }, :method => 'GET', :remote => true do |f| -%>
+<center>
+	<table style='width: 1050px; text-align: center' border=0>
+		<tr>
+			<td width='50%' height='500px'>
+				<b id="opponent_nametag" class='nametag'>Oppopnent</b>
+				<div id='output-notepad' style='position: relative; top: -10px'>
+					<div id='opponent_panel' class='panel' style='position: relative; top: 21px'>
+						<div style='display: inline-block;width: 100%;position: relative; height: 100%;'>
+							<div id='opponent_code' onclick='hide_question()'>
+System.out.println("Waiting for an opponent....");
+</div>
+							<b class='SolveButton' style='float: right; z-index:2; top:-85px; right: 30px' onclick='show_question()'>Question</b>
+						</div>
+					</div>
+					<div class='panel' id='question'> 
+						<div style='display: inline-block;width: 100%'></div>
+					</div>
+				</div>
+			</td>
+
+			<td width='50%' height='500px'>
+				<div id='output-notepad'>
+					<div class='panel' id='notepad'>
+						<%= f.hidden_field :battle_id, :value => @battle.id %>
+						<%= f.hidden_field :lang %>
+						<%= f.hidden_field :code %>						
+						<div id='ace_code' onclick='hide_output()'><%= 
+						if @battle.current_user(current_user).code.code == ""
+"
+The Battle will start when the oppopnent joins.
+
+Question will appear as the battle starts.
+"
+						else
+							@battle.current_user(current_user).code.code
+						end
+						%></div>
+						<div id='lang_bar'>
+							<ul>
+								<% (0...CompilerFactory.langs.length).each do |i| %>
+								<li class='selected'><%= CompilerFactory.langs[i] %></li>
+								<% end %>
+							</ul>
+							<script type="text/javascript">
+							$($('#lang_bar li').toggleClass()[0]).toggleClass();
+							</script>
+							<b class='SolveButton' style='float: right' onclick="show_output();">Ready</b>	
+							<b class='SolveButton' style='float: right; display: none' onclick="show_output();">Run</b>	
+						</div>
+					</div>
+					<div class='panel' id='output'> 
+						<div id="pacman">
+							<%= image_tag 'pacman.gif'%>
+							<i> ' ' ' ' ' ' ' ' ' ' ' ' ' ' </i>
+						</div>
+						<textarea class='homebrew' style='height: 97%'></textarea>
+					</div>
+				</div>
+			</td>
+		</tr>
+	</table>
+</center>
+<% end -%>
+
+<%= javascript_include_tag 'ace/ace' %>
+
+<script type="text/javascript">
+var opponent_code;
+var editor;
+var question_code;
+$(document).ready(function(){	
+	editor = ace.edit("ace_code");
+	editor.setTheme("ace/theme/monokai");
+	editor.getSession().setMode("ace/mode/java");
+
+    opponent_code = ace.edit("opponent_code");
+    //opponent_code.setTheme("ace/theme/monokai");
+    //opponent_code.getSession().setMode("ace/mode/java");
+});
+//fixes Safari bug
+setTimeout(function() {
+	editor.setTheme("ace/theme/monokai");
+	opponent_code.setTheme("ace/theme/monokai");	
+	update();
+}, 300);
+</script>

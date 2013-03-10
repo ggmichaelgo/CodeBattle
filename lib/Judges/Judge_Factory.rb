@@ -17,8 +17,8 @@ class JudgeFactory
 		@@container
 	end
 
-	def JudgeFactory.get q, code, lang						
-		judge = @@container[q.class.to_s].new(q, code, lang)
+	def JudgeFactory.get q, code						
+		judge = @@container[q.class.to_s].new(q, code.code, code.lang)
 		return judge
 	end
 end

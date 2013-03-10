@@ -1,1 +1,39 @@
-edit.html.erb
+<%= stylesheet_link_tag 'questions/new' %>
+<%= javascript_include_tag 'catchTab' %>
+<%= javascript_include_tag 'questions/edit' %>
+<br>
+<div style='width: 100%; text-align:center'>
+	<%= image_tag('logo_small.png') %>
+</div>
+
+<center>
+	<table style='height: 70%; width: 1050px; text-align: center' border=0>
+		<tr>
+			<td width=50%>
+				<div class='panel'>
+					<div id='question'>
+
+					</div>
+				</div>
+			</td>
+			<td>
+				<div class='panel' id='notepad'> 
+					<textarea class='homebrew' id='code' spellcheck="false" onkeydown="return catchTab(this,event)"><%= @question.content %></textarea>
+					<textarea class='io' id='input'></textarea>
+					<textarea class='io' id='output'></textarea>
+					
+					<b class='SolveButton' style='float: right;' onclick='add_io();'>Add</b>					
+					<b class='SolveButton' style='float: right'>Run</b>
+					<b class='SolveButton' style='float: right' onclick='submit();'>Submit</b>
+				</div>
+			</td>
+		</tr>
+	</table>
+</center>
+
+<%= javascript_include_tag 'ace/ace' %>
+<script>
+    var editor = ace.edit("ace_code");
+    editor.setTheme("ace/theme/monokai");
+    editor.getSession().setMode("ace/mode/java");
+</script>

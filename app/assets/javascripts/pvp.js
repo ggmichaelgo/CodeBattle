@@ -16,9 +16,12 @@ $(document).ready(function(){
 function set_question(content)
 {
 	$('#question')[0].innerHTML = content;
-	question_code = ace.edit("question_code");
-	question_code.setTheme("ace/theme/monokai");
-	question_code.getSession().setMode("ace/mode/java");
+	if($('#question_code')[0])
+	{
+		question_code = ace.edit("question_code");
+		question_code.setTheme("ace/theme/monokai");
+		question_code.getSession().setMode("ace/mode/java");
+	}
 	coder['user_code'].q_id = -1;
 	setTimeout(function() {
 		show_question();

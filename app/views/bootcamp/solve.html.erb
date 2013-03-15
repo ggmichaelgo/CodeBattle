@@ -73,11 +73,19 @@
 
 <%= javascript_include_tag 'ace/ace' %>
 <script>
-    var editor = ace.edit("ace_code");
-    editor.setTheme("ace/theme/monokai");
-    editor.getSession().setMode("ace/mode/java");
+    var editor;
+	var question_code;
+	$(document).ready(function(){
+		setTimeout(function() {
+			editor.setTheme("ace/theme/monokai");
+			question_code.setTheme("ace/theme/monokai");
+		}, 1000);
+		editor = ace.edit("ace_code");
+		editor.setTheme("ace/theme/monokai");
+		editor.getSession().setMode("ace/mode/java");
 
-    var question_code = ace.edit("question_code");
-    question_code.setTheme("ace/theme/monokai");
-    question_code.getSession().setMode("ace/mode/java");
+		question_code = ace.edit("question_code");
+		question_code.setTheme("ace/theme/monokai");
+		question_code.getSession().setMode("ace/mode/java");
+	});
 </script>

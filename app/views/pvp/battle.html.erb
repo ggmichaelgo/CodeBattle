@@ -93,20 +93,18 @@ Question will appear as the battle starts.
 <script type="text/javascript">
 var opponent_code;
 var editor;
-var question_code;
+
 $(document).ready(function(){	
+	setTimeout(function() {
+		editor.setTheme("ace/theme/monokai");
+		opponent_code.setTheme("ace/theme/monokai");	
+		update();
+	}, 1000);
 	editor = ace.edit("ace_code");
 	editor.setTheme("ace/theme/monokai");
 	editor.getSession().setMode("ace/mode/java");
 
     opponent_code = ace.edit("opponent_code");
-    //opponent_code.setTheme("ace/theme/monokai");
-    //opponent_code.getSession().setMode("ace/mode/java");
+    opponent_code.setTheme("ace/theme/monokai");    
 });
-//fixes Safari bug
-setTimeout(function() {
-	editor.setTheme("ace/theme/monokai");
-	opponent_code.setTheme("ace/theme/monokai");	
-	update();
-}, 300);
 </script>

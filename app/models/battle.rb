@@ -7,7 +7,7 @@ class Battle < ActiveRecord::Base
 	def initialize
 		super
 		self.state = :created
-		self.question_id = Question.rnd.id
+		self.question_id = Question.rnd.category_index
 	end
 
 	def question

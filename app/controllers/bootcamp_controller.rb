@@ -19,7 +19,7 @@ class BootcampController < ApplicationController
 				:question_index => Integer(params[:id]),
 				:question_category => 'BootCamp',
 				:code => '',
-				:started_time => Time.now)			
+				:started_time => Time.now)
 		end
 		@code = Code.new(:code => @solved_question.code)
 	end
@@ -27,7 +27,6 @@ class BootcampController < ApplicationController
 	def run
 		@code = Code.new(params[:code])
 		q = Question.category_find('BootCamp', @code.q_id)
-		q = q.first
 		
 		judge = JudgeFactory.get q, @code
 		result = judge.run
@@ -38,7 +37,7 @@ class BootcampController < ApplicationController
 		solved_question.code = @code.code
 
 		#solved the question
-		if result.last == true
+		if result.last == true && solved_question.solved_time == nil
 			solved_question.solved_time = Time.now 
 			current_user.user_info.points += 1
 		end

@@ -1,4 +1,5 @@
 class BankController < ApplicationController
+
 	def index
 		@solved_questions = current_user.user_info.solved_questions.select{ |x| x.question_category == 'Bank' && x.solved_time != nil}
 		@list = Question.category_all('Bank')
@@ -26,7 +27,6 @@ class BankController < ApplicationController
 	def run
 		@code = Code.new(params[:code])
 		q = Question.category_find('Bank', @code.q_id)
-		q = q.first
 		
 		judge = JudgeFactory.get q, @code
 		result = judge.run
@@ -36,7 +36,7 @@ class BankController < ApplicationController
 		}
 		solved_question.code = @code.code
 		
-		if result.last == true
+		if result.last == true && solved_question.solved_time == nil
 			solved_question.solved_time = Time.now 
 			current_user.user_info.points += 1
 		end
@@ -45,4 +45,5 @@ class BankController < ApplicationController
 		current_user.user_info.save
 		render :json => result
 	end
+
 end

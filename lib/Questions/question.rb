@@ -60,7 +60,7 @@ module Question
 				break
 			end
 		end
-		return q
+		return q[0]
 	end
 
 	def self.find(id)

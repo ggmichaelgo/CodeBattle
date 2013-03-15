@@ -26,11 +26,11 @@ class QuestionsController < ApplicationController
 	end
 
 	def edit	
-		@question = Question.category_find(params[:category], params[:id])[0]
+		@question = Question.category_find(params[:category], params[:id])
 	end
 
 	def update
-		@question = Question.category_find(params[:category], params[:id])[0]
+		@question = Question.category_find(params[:category], params[:id])
 		@question.content = params[:question][:content]
 		@question.save
 		render :json => 1

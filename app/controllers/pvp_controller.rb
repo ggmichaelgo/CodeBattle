@@ -12,7 +12,7 @@ class PvpController < ApplicationController
 
 	def battle
 		@battle = Battle.find params[:id]
-		@question = Question.find @battle.question_id
+		@question = Question.category_find('Bank', @battle.question_id)
 		@question.content = @question.content.html_safe
 		@code = Code.new
 		if @battle.current_user(current_user) == false && @battle.add_coder(current_user) == false
@@ -20,7 +20,7 @@ class PvpController < ApplicationController
 		end
 	end
 
-	def update_user		
+	def update_user
 		battle = Battle.find params[:battle_id]
 		if (coder = battle.current_user current_user)
 			coder.code.update_attributes(params[:user_code])
@@ -33,7 +33,7 @@ class PvpController < ApplicationController
 				'state' => battle.state
 			}
 			if battle.state=="running" && coder.code.q_id == "0"
-				data['question'] = Question.find(battle.question_id).content.html_safe 
+				data['question'] = Question.category_find('Bank',battle.question_id).content.html_safe 
 			elsif battle.state == 'finish'
 				data['winner'] = battle.coders.find { |x| x.state == 'finished' }.user_info
 			end
@@ -46,17 +46,15 @@ class PvpController < ApplicationController
 	def run
 		battle = Battle.find(params[:code][:battle_id])
 		params[:code].delete(:battle_id)
-		code = Code.new(params[:code])		
-		q = Question.find(battle.question_id)		
+		code = Code.new(params[:code])
+		q = Question.category_find('Bank', @battle.question_id)
 		judge = JudgeFactory.get q, code
 		result = judge.run
 		
-		if result.last == true && battle.state == 'running'			
+		if result.last == true && battle.state == 'running'
 			battle.state = 'finish'
 			coder = battle.current_user(current_user)
 			coder.state = 'finished'
-			current_user.user_info.points += 1
-			current_user.user_info.save
 			coder.save
 			battle.save
 		end

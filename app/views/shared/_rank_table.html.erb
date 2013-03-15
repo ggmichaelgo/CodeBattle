@@ -35,9 +35,9 @@ function select_user()
 		<% else %>
 		<tr>
 			<% end %>
-			<td><%= rank %></td>
+			<td><%= user.rank %></td>
 			<td><%= user.username %> </td>
-			<td><%= user.user_info.points %></td>
+			<td><%= user.points %></td>
 			<% rank+=1 %>
 		</tr>
 		<% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130304003102) do
+ActiveRecord::Schema.define(:version => 20130313164745) do
 
   create_table "battles", :force => true do |t|
     t.string   "state"
@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(:version => 20130304003102) do
   create_table "coders", :force => true do |t|
     t.string   "state"
     t.integer  "battle_id"
-    t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -41,8 +40,17 @@ ActiveRecord::Schema.define(:version => 20130304003102) do
 
   create_table "ctfs", :force => true do |t|
     t.string   "title"
-    t.integer  "question_id"
-    t.integer  "capturer_id"
+    t.string   "state"
+    t.text     "questions"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "hosts", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "logo_path"
+    t.integer  "ctf_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
@@ -98,6 +106,7 @@ ActiveRecord::Schema.define(:version => 20130304003102) do
     t.integer "user_id"
     t.integer "coder_id"
     t.string  "username", :limit => 20
+    t.integer "ctf_id"
   end
 
   create_table "users", :force => true do |t|

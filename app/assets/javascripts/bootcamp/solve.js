@@ -39,6 +39,7 @@ function show_output () {
 		left: 460,
 		opacity: 0.4
 	}, 500);	
+	$('#output textarea').focus();
 }
 
 function hide_output () {

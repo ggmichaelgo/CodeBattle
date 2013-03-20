@@ -2,18 +2,8 @@ var index = 0;
 
 function select_center()
 {
-	// $('.circle.big').stop(true, true).toggleClass('big small', 100);	
-	// $($('.circle')[index]).stop(true, true).toggleClass('small big', 100);
-
-	$('.circle.big').toggleClass('big small', 100);	
-	$($('.circle')[index]).toggleClass('small big', 100);
-
-	// $('.circle.big').animate({
-	// 	'class': 'circle small'
-	// }, 100);
-	// $($('.circle.small')[index]).animate({
-	// 	'class': 'circle big'
-	// }, 100);
+	$('.circle.big').toggleClass('big small');	
+	$($('.circle')[index]).toggleClass('small big');
 }
 
 function slide_circles(dir)

@@ -14,8 +14,8 @@ class QuestionsController < ApplicationController
 			@question = RobotQuestion.new(params[:question])
 		end
 
-		@question = RobotQuestion.new(params[:question])
-		#@question = IOQuestion.new(params[:question])
+		#@question = RobotQuestion.new(params[:question])
+		@question = IOQuestion.new(params[:question])
 
 		@question.save
 		render :json => 1

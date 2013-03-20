@@ -11,8 +11,6 @@
 	<%= yield :head %>	
 </head>
 <body>
-	<p class="notice"><%= notice %></p>
-	<p class="alert"><%= alert %></p>
 	<div style='float: right'>
 		<% if user_signed_in? %>
 			Signed in as <%= current_user.username %>

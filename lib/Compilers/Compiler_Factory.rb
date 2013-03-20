@@ -3,12 +3,12 @@ class CompilerFactory
 	@@langs = [
 		:Java,
 		:CPP,
-		:Python	
+		:Ruby	
 	]
 	@@container = {
 		:Java => JavaCompiler,
 		:CPP => CppCompiler,
-		:Python => PythonCompiler
+		:Ruby => RubyCompiler
 	}
 	def CompilerFactory.langs 
 		@@langs

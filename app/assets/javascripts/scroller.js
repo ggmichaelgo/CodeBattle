@@ -3,7 +3,7 @@ function change_number(i , num)
 {
 	$($('.digit')[i]).animate({
 		top: -108*num
-	}, 300);
+	}, 250);
 }
 function scroll(target)
 {

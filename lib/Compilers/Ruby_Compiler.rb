@@ -1,8 +1,8 @@
 
-class PythonCompiler < Compiler
+class RubyCompiler < Compiler
 	def initialize
 		super
-		@path += "Python/"
+		@path += "Ruby/"
 	end
 
 	def compile code
@@ -10,6 +10,6 @@ class PythonCompiler < Compiler
 	end	
 
 	def run
-		return 'python'
+		return 'ruby'
 	end
 end

@@ -6,14 +6,15 @@
 	@list = UserInfo.all.sort! {|a,b| b.points <=> a.points} 
 	last_point = @list.first.points
 	rank = 1
+	cnt = 0
 	@list.each do |x|
-		puts x.points.to_s + " : " + last_point.to_s
 		if x.points < last_point
-			rank = rank + 1 
+			rank += cnt
+			cnt = 0
 			last_point = x.points
 		end
 		x.rank = rank
-		puts rank
+		cnt+=1
 	end
 %>
 <br>

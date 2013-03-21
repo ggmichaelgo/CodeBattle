@@ -1,9 +1,8 @@
 class BootcampController < ApplicationController
 	def index
-		@solved_questions = current_user.user_info.solved_questions.find_all{ |x| x.question_category == 'BootCamp'} unless current_user.user_info.solved_questions		
 		@list = Question.category_all('BootCamp')
 		@list.sort! {|x,y| x.category_index <=> y.category_index}
-		@solved_questions = current_user.user_info.solved_questions.select { |x| x.solved_time != nil}
+		@solved_questions = current_user.user_info.solved_questions.select { |x| x.question_category == 'BootCamp' && x.solved_time != nil}
 	end
 
 	def solve

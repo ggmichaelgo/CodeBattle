@@ -21,6 +21,8 @@
 
 <div style='width: 100%; text-align:center'>
 	<%= image_tag 'logo_small.png', :onclick => "location =  '/pvp'", :style => "cursor: pointer" %>
+	<br>
+	<a href="/pvp/exit" style='color: white;'>EXIT</a>	
 </div>
 
 <%= form_for @code, :url => {:controller => 'pvp', :action => 'run' }, :method => 'GET', :remote => true do |f| -%>
@@ -70,7 +72,7 @@ Question will appear as the battle starts.
 							<script type="text/javascript">
 							$($('#lang_bar li').toggleClass()[0]).toggleClass();
 							</script>
-							<b class='SolveButton' style='float: right' onclick="show_output();">Ready</b>	
+							<b class='SolveButton' style='float: right' onclick="show_output();">Run</b>	
 							<b class='SolveButton' style='float: right; display: none' onclick="show_output();">Run</b>	
 						</div>
 					</div>

@@ -93,10 +93,11 @@ function code_output(evt, data, status, xhr)
 		content += '\n';
 	}
 	scroller_question(data, result);
-	
-	$('#output textarea').val(content);
-	$('#pacman').fadeOut(1000, function(){
-		if(result)
-			show_clear();
-	});
+	setTimeout(function(){ 	
+		$('#output textarea').val(content);
+		$('#pacman').fadeOut(1000, function(){
+			if(result)
+				show_clear();
+		});
+	}, 1000);
 }

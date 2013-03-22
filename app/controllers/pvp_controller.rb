@@ -1,6 +1,8 @@
 class PvpController < ApplicationController
 	def index
-		
+		list = Battle.where(:state => 'running', :state => 'created')
+		battle = list.find { |x| x.coders.find { |y| y.user_info == current_user.user_info }  }		
+		redirect_to :action => 'battle', :id => battle.id if battle != nil
 	end
 
 	def create
@@ -8,6 +10,13 @@ class PvpController < ApplicationController
 		b.add_coder current_user
 		b.save
 		redirect_to :action => 'battle', :id => b.id
+	end
+
+	def exit
+		list = Battle.where(:state => 'running') + Battle.where(:state => 'created')
+		battle = list.find { |x| x.coders.find { |y| y.user_info == current_user.user_info } != nil }
+		battle.delete
+		redirect_to :action => 'index'
 	end
 
 	def battle

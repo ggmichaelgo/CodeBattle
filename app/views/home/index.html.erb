@@ -3,7 +3,7 @@
 <%= stylesheet_link_tag("console") %>
 	
 <% 
-	@list = UserInfo.all.sort! {|a,b| b.points <=> a.points} 
+	@list = UserInfo.all.sort! {|a,b| b.points <=> a.points}
 	last_point = @list.first.points
 	rank = 1
 	cnt = 0

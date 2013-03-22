@@ -4,6 +4,7 @@
 	
 <% 
 	@list = UserInfo.all.sort! {|a,b| b.points <=> a.points}
+	@list = @list.delete_if { |x| x.username == 'guest'}
 	last_point = @list.first.points
 	rank = 1
 	cnt = 0

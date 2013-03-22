@@ -109,6 +109,6 @@ $(document).ready(function(){
 		},
 		animateScroll:true,
 		promptHistory:true,
-		welcomeMessage: 'Welcome to CodeBattle\nVersion 1.0\nCopyright (c) 2013 Michael Go\n\nType your User name'
+		welcomeMessage: 'Welcome to CodeBattle\nVersion 1.0\nCopyright (c) 2013 Michael Go\n\nGuest account is available\nusername: guest\npassword: guest\n\nType your User name\n'
 	});
 });

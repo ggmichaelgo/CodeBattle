@@ -1,6 +1,7 @@
 class BankController < ApplicationController
 
 	def index
+		@solved_questions = []
 		@solved_questions = current_user.user_info.solved_questions.select{ |x| x.question_category == 'Bank' && x.solved_time != nil} if current_user.username != 'guest'
 		@list = Question.category_all('Bank')
 		@list.sort! {|x,y| x.category_index <=> y.category_index}		
@@ -21,6 +22,8 @@ class BankController < ApplicationController
 				:code => '',
 				:started_time => Time.now)
 		end
+		@solved_question = SolvedQuestion.new if current_user.username == 'guest'
+		
 		@code = Code.new(:code => @solved_question.code)
 	end
 

@@ -2,6 +2,7 @@ class BootcampController < ApplicationController
 	def index
 		@list = Question.category_all('BootCamp')
 		@list.sort! {|x,y| x.category_index <=> y.category_index}
+		@solved_questions = []
 		@solved_questions = current_user.user_info.solved_questions.select { |x| x.question_category == 'BootCamp' && x.solved_time != nil} if current_user.username != 'guest'
 	end
 
@@ -19,7 +20,9 @@ class BootcampController < ApplicationController
 				:question_category => 'BootCamp',
 				:code => '',
 				:started_time => Time.now)
-		end
+		end		
+		@solved_question = SolvedQuestion.new if current_user.username == 'guest'
+		
 		@code = Code.new(:code => @solved_question.code)
 	end
 

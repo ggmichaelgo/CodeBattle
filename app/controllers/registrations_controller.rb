@@ -5,9 +5,10 @@ class RegistrationsController < Devise::RegistrationsController
 	end
 
 	def create
-		@user = User.new(params[:user])
-		@user.build_user_info		
-		@user.save
-		redirect_to '/'
+		super
+		if @user.save
+			@user.build_user_info 
+			@user.user_info.save
+		end
 	end
 end	

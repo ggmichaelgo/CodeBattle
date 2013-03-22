@@ -1,7 +1,7 @@
 class BankController < ApplicationController
 
 	def index
-		@solved_questions = current_user.user_info.solved_questions.select{ |x| x.question_category == 'Bank' && x.solved_time != nil}
+		@solved_questions = current_user.user_info.solved_questions.select{ |x| x.question_category == 'Bank' && x.solved_time != nil} if current_user.username != 'guest'
 		@list = Question.category_all('Bank')
 		@list.sort! {|x,y| x.category_index <=> y.category_index}		
 	end
@@ -14,7 +14,7 @@ class BankController < ApplicationController
 		@solved_question = current_user.user_info.solved_questions.find { |x| 
 			x.question_category == 'Bank' && x.question_index == Integer(params[:id])
 		}
-		if @solved_question == nil
+		if @solved_question == nil && current_user.username != 'guest'
 			@solved_question = current_user.user_info.solved_questions.create(
 				:question_index => Integer(params[:id]),
 				:question_category => 'Bank',
@@ -31,14 +31,16 @@ class BankController < ApplicationController
 		judge = JudgeFactory.get q, @code
 		result = judge.run
 
-		solved_question = current_user.user_info.solved_questions.find { |x| 
-			x.question_category == 'Bank' && x.question_index == Integer(@code.q_id)
-		}
-		solved_question.code = @code.code
-		
-		if result.last == true && solved_question.solved_time == nil
-			solved_question.solved_time = Time.now 
-			current_user.user_info.points += 1
+		if current_user.username != 'guest'
+			solved_question = current_user.user_info.solved_questions.find { |x| 
+				x.question_category == 'Bank' && x.question_index == Integer(@code.q_id)
+			}
+			solved_question.code = @code.code
+			
+			if result.last == true && solved_question.solved_time == nil
+				solved_question.solved_time = Time.now 
+				current_user.user_info.points += 1
+			end
 		end
 
 		solved_question.save

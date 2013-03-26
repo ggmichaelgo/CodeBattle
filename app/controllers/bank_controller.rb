@@ -13,11 +13,11 @@ class BankController < ApplicationController
 		@question.content = @question.content.html_safe
 
 		@solved_question = current_user.user_info.solved_questions.find { |x| 
-			x.question_category == 'Bank' && x.question_index == Integer(params[:id])
+			x.question_category == 'Bank' && x.question_id == @question.id
 		}
 		if @solved_question == nil && current_user.username != 'guest'
 			@solved_question = current_user.user_info.solved_questions.create(
-				:question_index => Integer(params[:id]),
+				:question_id => @question.id,
 				:question_category => 'Bank',
 				:code => '',
 				:started_time => Time.now)
@@ -36,7 +36,7 @@ class BankController < ApplicationController
 
 		if current_user.username != 'guest'
 			solved_question = current_user.user_info.solved_questions.find { |x| 
-				x.question_category == 'Bank' && x.question_index == Integer(@code.q_id)
+				x.question_category == 'Bank' && x.question_id == q.id
 			}
 			solved_question.code = @code.code
 			

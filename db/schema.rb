@@ -29,13 +29,12 @@ ActiveRecord::Schema.define(:version => 20130313164745) do
   end
 
   create_table "codes", :force => true do |t|
+    t.text     "code"
     t.string   "lang"
-    t.string   "question"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
     t.string   "q_id"
     t.integer  "coder_id"
-    t.text     "code"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "ctfs", :force => true do |t|
@@ -94,7 +93,7 @@ ActiveRecord::Schema.define(:version => 20130313164745) do
 
   create_table "solved_questions", :force => true do |t|
     t.string   "question_category"
-    t.integer  "question_index"
+    t.integer  "question_id"
     t.text     "code"
     t.datetime "started_time"
     t.datetime "solved_time"
@@ -103,10 +102,10 @@ ActiveRecord::Schema.define(:version => 20130313164745) do
 
   create_table "user_infos", :force => true do |t|
     t.integer "points"
+    t.integer "rank"
+    t.string  "username"
     t.integer "user_id"
     t.integer "coder_id"
-    t.string  "username", :limit => 20
-    t.integer "ctf_id"
   end
 
   create_table "users", :force => true do |t|

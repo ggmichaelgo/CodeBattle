@@ -22,7 +22,7 @@
 					<td class='question_cell' onclick='location="bank/solve/<%=q.category_index%>"'>
 						<b class='question_number_tag'>#</b>
 						<b class='question_title'><%= q.category_index %></b>
-						<% if  solved_questions.find{ |x| x.question_index == q.category_index } != nil %>
+						<% if  solved_questions.find{ |x| x.question_id == q.id } != nil %>
 						<!-- <div style='position: absolute'> -->
 							<%= image_tag 'circular_solved_tag.png', :class => 'circular_solved_tag' %>
 						<!-- </div> -->

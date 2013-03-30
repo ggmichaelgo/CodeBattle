@@ -10,6 +10,10 @@ class IOJudge < Judge
 			output << compiler.run( @question.inputs[i] )
 			output[i] = output[i].join('')
 			solved = false if output[i] != @question.outputs[i] && output[i] != (@question.outputs[i] + "\n") && (output[i]+"\n") != @question.outputs[i]
+			puts @question.outputs[i].length
+			puts @question.outputs[i]
+			puts output[i].length
+			puts output[i]
 		end
 		return output, solved
 	end

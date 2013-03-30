@@ -76,7 +76,6 @@ class JavaCompiler < Compiler
 			Process.kill("HUP", xhr.pid) if xhr.alive?
 		end
 		result = 'Run/Compiler Error!' if result == nil
-		puts result
 		return result
 	end
 end

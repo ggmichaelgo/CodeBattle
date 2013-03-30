@@ -14,14 +14,6 @@
 	<%= image_tag 'logo_small.png', :onclick => "location =  '/bootcamp'", :style => "cursor: pointer" %>	
 </div>
 
-<% if @solved_question.solved_time != nil %>
-	<script type="text/javascript">
-		$(function(){
-			// show_solved_tag();
-		})		
-	</script>
-<% end %>
-
 <%= form_for @code, :url => {:controller => 'bootcamp', :action => 'run'}, :remote => true do |f| -%>
 <center>
 	<table style='height: 70%; width: 1050px; text-align: center' border=0>
@@ -78,14 +70,18 @@
 	$(document).ready(function(){
 		setTimeout(function() {
 			editor.setTheme("ace/theme/monokai");
-			question_code.setTheme("ace/theme/monokai");
+			if(question_code)
+				question_code.setTheme("ace/theme/monokai");
 		}, 1000);
 		editor = ace.edit("ace_code");
 		editor.setTheme("ace/theme/monokai");
 		editor.getSession().setMode("ace/mode/java");
 
-		question_code = ace.edit("question_code");
-		question_code.setTheme("ace/theme/monokai");
-		question_code.getSession().setMode("ace/mode/java");
+		if($('#question_code') != [])
+		{
+			question_code = ace.edit("question_code");
+			question_code.setTheme("ace/theme/monokai");
+			question_code.getSession().setMode("ace/mode/java");
+		}		
 	});
 </script>

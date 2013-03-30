@@ -71,6 +71,23 @@ function scroller_question(data, result)
 	}
 }
 
+function monster_question(data, result)
+{
+	if ($('#monster').length != 0 )
+	{
+		$('#food')[0].innerHTML = '';
+		while(data)
+		{
+			$('#food').append($('<b>' + data.pop()+ '</b>'));
+		}
+	}
+}
+
+function show_question_animation(object)
+{
+
+}
+
 function code_output(evt, data, status, xhr)
 {
 	console.log(data);
@@ -78,22 +95,23 @@ function code_output(evt, data, status, xhr)
 	content = '';
 	content += '===== Result =====\n';
 	result = data.pop();
-	
 	content += result;
 	content += '\n';
+
 	if(Object.prototype.toString.call(data[0]) == "[object Array]")
-		data = data[0];
+		data = data[0];	
 	for(i=0 ; i<data.length ; i++)
 	{
 		content += "===== Run #" + (i+1) + " =====\n";
 		for (k=0 ; k<data[i].length ; k++)
-		{
 			content += data[i][k];
-		}
 		content += '\n';
+		if(i==data.length-1)
+			show_question_animation(data[i]);
 	}
 	scroller_question(data, result);
-	setTimeout(function(){ 	
+	monster_question(data, result);
+	setTimeout(function(){
 		$('#output textarea').val(content);
 		$('#pacman').fadeOut(1000, function(){
 			if(result)

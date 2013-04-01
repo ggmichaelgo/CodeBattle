@@ -32,12 +32,12 @@ img
 
 #about
 {
-	color: black;
+	color: #fff;
 	font-size: 154px;
 	text-decoration: none;
 	position: relative;
 	top: 110px;
-	cursor: pointer;	
+	cursor: pointer;
 }
 
 div

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130313164745) do
+ActiveRecord::Schema.define(:version => 20130402172255) do
 
   create_table "battles", :force => true do |t|
     t.string   "state"
@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(:version => 20130313164745) do
     t.datetime "started_time"
     t.datetime "solved_time"
     t.integer  "user_info_id"
+    t.integer  "question_category_index"
   end
 
   create_table "user_infos", :force => true do |t|

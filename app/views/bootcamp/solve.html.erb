@@ -11,9 +11,31 @@
 </div>
 
 <div style='width: 100%; text-align:center'>	
-	<%= image_tag 'logo_small.png', :onclick => "location =  '/bootcamp'", :style => "cursor: pointer" %>	
+	<%= image_tag 'logo_small.png', :onclick => "location =  '/bootcamp'", :style => "cursor: pointer; width: 100px" %>	
 </div>
 
+<!--
+<%= render "shared/track" %>
+-->
+<script type="text/javascript">
+	$(document).ready(function(){
+		// var n = <%= Question.category_all('BootCamp').length %>;
+		// for(i=0 ; i<n ; i++)
+		// {
+		// 	console.log(i);
+		// 	track.add(i);
+		// }
+		// track.select(parseInt($('#code_q_id').val())-1);
+		// $('.point').click(function(){
+		// 	q_id = $('.point').index(this);
+		// 	loc = location.href.split("/");
+		// 	loc.pop();
+		// 	loc.push(q_id+1);
+		// 	location = loc.join('/');
+		// });
+	});
+
+</script>
 <%= form_for @code, :url => {:controller => 'bootcamp', :action => 'run'}, :remote => true do |f| -%>
 <center>
 	<table style='height: 70%; width: 1050px; text-align: center' border=0>

@@ -1,0 +1,22 @@
+<link rel="stylesheet" type="text/css" href="/assets/track.css">
+
+<%= javascript_include_tag 'track' %>
+<%= javascript_include_tag("jquery.console") %>
+<script type="text/javascript">
+	var track;
+	$(document).ready(function(){
+		track = $("#track").track({
+			point_animation: false
+		});
+	});
+</script>
+
+
+<div id='track'>
+	<div id='progress'>
+		<span id='meter'></span>
+	</div>
+	<ol id="bar">
+		
+	</ol>
+</div>
